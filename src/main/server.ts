@@ -7,5 +7,5 @@ export default function start(app: App) {
 
   app.setRoutes(routesResolver);
 
-  app.start(parseInt(process.env.port, 10) || 3333);
+  app.start(parseInt(process.env.SERVER_PORT, 10) || 3333);
 }
