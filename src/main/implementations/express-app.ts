@@ -7,6 +7,7 @@ import bodyParser from 'body-parser';
 import App from 'src/main/app';
 import { RoutesResolver } from 'src/main/routes';
 import ExpressRouterAdapter from './express-router-adapter';
+import Database from '../database';
 
 class ExpressApp implements App {
   public readonly express: express.Application;
@@ -38,6 +39,10 @@ class ExpressApp implements App {
     this.express.use(cors());
 
     this.express.use(router.getExpressRouter());
+  }
+
+  async setDatabase(database: Database): Promise<void> {
+    return database.connect();
   }
 }
 
