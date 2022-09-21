@@ -9,15 +9,15 @@ import AddProductUseCase from 'src/modules/products/domain/use-cases/add-product
 
 container.register<AddProductRepository>(
   'AddProductRepository',
-  ProductRepositoryImplementation,
+  { useClass: ProductRepositoryImplementation },
 )
 
 container.register(
   Model<ProductDocument>,
-  productModel,
+  { useValue: productModel },
 )
 
 container.register<AddProductUseCase>(
   'AddProductUseCase',
-  AddProductUseCaseImplementation,
+  { useClass: AddProductUseCaseImplementation },
 )
