@@ -18,6 +18,6 @@ export default class AddProductUseCaseImplementation implements AddProductUseCas
       throw new Error('Invalid price');
     }
 
-    return this.repository.execute(productData);
+    return this.repository.addProduct(productData);
   }
 }
