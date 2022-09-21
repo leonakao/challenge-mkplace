@@ -1,8 +1,9 @@
-import addProductController from 'src/modules/products/presentation/controllers/add-product-controller';
+import AddProductController from 'src/modules/products/presentation/controllers/add-product-controller';
+import { container } from 'tsyringe';
 import Router from '../../router';
 
 export default (router: Router) => {
-  router.post('/', addProductController);
+  router.post('/', container.resolve(AddProductController));
 
   return router;
 }
