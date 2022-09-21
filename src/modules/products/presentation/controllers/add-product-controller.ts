@@ -1,15 +1,25 @@
 import { Controller, Request, Response } from 'src/modules/shared/presentation';
+import { inject, injectable } from 'tsyringe';
+import AddProductUseCase, { AddProductData } from '../../domain/use-cases/add-product-use-case';
+import addProductValidation from '../validations/add-product-validation';
 
-class AddProductController implements Controller {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+@injectable()
+export default class AddProductController implements Controller {
+  constructor(
+    @inject('AddProductUseCase')
+    private readonly addProductUseCase: AddProductUseCase,
+  ) {}
+
   async handle(request: Request): Promise<Response> {
+    const addProductData = await addProductValidation.validate(request.body()) as AddProductData;
+
+    const product = await this.addProductUseCase.execute(addProductData);
+
     return {
       statusCode: 201,
       body: {
-        message: 'Product created successfully',
+        product,
       },
     }
   }
 }
-
-export default new AddProductController();
