@@ -18,7 +18,7 @@ export default class AddProductController implements Controller {
     return {
       statusCode: 201,
       body: {
-        product,
+        ...product,
       },
     }
   }
