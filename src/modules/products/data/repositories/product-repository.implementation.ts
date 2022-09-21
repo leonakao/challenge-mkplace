@@ -18,4 +18,14 @@ export default class ProductRepositoryImplementation implements ProductRepositor
 
     return productMapper(productDocument);
   }
+
+  async findByName(name: string): Promise<Product | null> {
+    const productDocument = await this.productModel.findOne({ name });
+
+    if (!productDocument) {
+      return null;
+    }
+
+    return productMapper(productDocument);
+  }
 }

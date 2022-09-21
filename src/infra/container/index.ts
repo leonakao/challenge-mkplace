@@ -6,6 +6,7 @@ import ProductRepositoryImplementation from 'src/modules/products/data/repositor
 import productModel, { ProductDocument } from 'src/modules/products/data/models/product-model';
 import AddProductUseCaseImplementation from 'src/modules/products/domain/use-cases/implementations/add-product-use-case.implementation';
 import AddProductUseCase from 'src/modules/products/domain/use-cases/add-product-use-case';
+import UniqueProductRule from 'src/modules/products/domain/rules/unique-product';
 
 container.register<ProductRepository>(
   'ProductRepository',
@@ -20,4 +21,9 @@ container.register(
 container.register<AddProductUseCase>(
   'AddProductUseCase',
   { useClass: AddProductUseCaseImplementation },
+)
+
+container.register<UniqueProductRule>(
+  'UniqueProductRule',
+  { useClass: UniqueProductRule },
 )
