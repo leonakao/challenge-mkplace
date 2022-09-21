@@ -11,7 +11,9 @@ export default class AddProductController implements Controller {
   ) {}
 
   async handle(request: Request): Promise<Response> {
-    const addProductData = await addProductValidation.validate(request.body()) as AddProductData;
+    const addProductData = await addProductValidation.validate(request.body(), {
+      abortEarly: false,
+    }) as AddProductData;
 
     const product = await this.addProductUseCase.execute(addProductData);
 
