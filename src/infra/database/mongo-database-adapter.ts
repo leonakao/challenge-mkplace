@@ -18,8 +18,6 @@ export default class MongoDatabaseAdapter implements Database {
   async connect(): Promise<void> {
     await mongoose.connect(this.uri, {
       autoIndex: true,
-    }, (error) => {
-      console.log('error to connect to database', error);
     });
 
     console.log('Connected to database');
