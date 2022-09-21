@@ -1,7 +1,7 @@
 import { Request as ExpressRequest, Response as ExpressResponse, Router as ExpressRouter } from 'express';
 import Controller from 'src/modules/shared/presentation/controller';
-import Router from '../../main/router'
 import ExpressRequestAdapter from './express-request-adapter';
+import Router from '../router'
 
 export default class ExpressRouterAdapter implements Router {
   private readonly expressRouter: ExpressRouter

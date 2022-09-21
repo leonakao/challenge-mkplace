@@ -1,12 +1,12 @@
 import 'reflect-metadata';
-import express from 'express';
+import express, { Router } from 'express';
 import cors from 'cors';
 import 'express-async-errors';
 import bodyParser from 'body-parser';
 
 import App from 'src/main/app';
 import { RoutesResolver } from 'src/main/routes';
-import expressRouter from './express-router';
+import ExpressRouterAdapter from './express-router-adapter';
 
 class ExpressApp implements App {
   public readonly express: express.Application;
@@ -23,7 +23,9 @@ class ExpressApp implements App {
   }
 
   setRoutes(routesResolver: RoutesResolver): void {
-    const router = expressRouter(routesResolver);
+    const router = new ExpressRouterAdapter(Router());
+
+    routesResolver(router);
 
     this.express.use(
       bodyParser.urlencoded({
