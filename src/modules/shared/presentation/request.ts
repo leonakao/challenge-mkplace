@@ -1,7 +1,7 @@
 interface Request {
-  body: () => object;
-  params: () => object;
-  query: () => object;
+  body: () => Record<string, unknown>;
+  params: () => Record<string, unknown>;
+  query: () => Record<string, unknown>;
 }
 
 export default Request;
