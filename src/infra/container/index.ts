@@ -7,6 +7,8 @@ import productModel, { ProductDocument } from 'src/modules/products/data/models/
 import AddProductUseCaseImplementation from 'src/modules/products/domain/use-cases/implementations/add-product-use-case.implementation';
 import AddProductUseCase from 'src/modules/products/domain/use-cases/add-product-use-case';
 import UniqueProductRule from 'src/modules/products/domain/rules/unique-product';
+import ListProductsUseCase from 'src/modules/products/domain/use-cases/list-products-use-case';
+import ListProductsUseCaseImplementation from 'src/modules/products/domain/use-cases/implementations/list-products-use-case.implementation';
 
 container.register<ProductRepository>(
   'ProductRepository',
@@ -21,6 +23,10 @@ container.register(
 container.register<AddProductUseCase>(
   'AddProductUseCase',
   { useClass: AddProductUseCaseImplementation },
+)
+container.register<ListProductsUseCase>(
+  'ListProductsUseCase',
+  { useClass: ListProductsUseCaseImplementation },
 )
 
 container.register<UniqueProductRule>(
