@@ -3,7 +3,7 @@ import { inject, injectable } from 'tsyringe';
 import ProductRepository from '../../domain/repositories/product-repository';
 import { AddProductData } from '../../domain/use-cases/add-product-use-case';
 import Product from '../../entity/product';
-import { productMapper } from '../mapper/product-mapper';
+import productMapper from '../mapper/product-mapper';
 import { ProductDocument } from '../models/product-model';
 
 @injectable()
