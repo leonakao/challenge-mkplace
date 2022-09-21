@@ -28,4 +28,13 @@ export default class ProductRepositoryImplementation implements ProductRepositor
 
     return productMapper(productDocument);
   }
+
+  async listProducts(perPage: number, page: number): Promise<Product[]> {
+    const productDocuments = await this.productModel
+      .find()
+      .skip(perPage * (page - 1))
+      .limit(perPage);
+
+    return productDocuments.map(productMapper);
+  }
 }
