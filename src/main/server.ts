@@ -3,6 +3,7 @@ import 'reflect-metadata';
 import 'src/infra/container';
 import MongoDatabaseAdapter from 'src/infra/database/mongo-database-adapter';
 import App from './app';
+import ErrorHandler from './error-handler';
 import routesResolver from './routes';
 
 export default function start(app: App): void {
@@ -13,6 +14,8 @@ export default function start(app: App): void {
   );
 
   app.setRoutes(routesResolver);
+
+  app.setErrorHandler(new ErrorHandler());
 
   app.start(parseInt(process.env.SERVER_PORT, 10) || 3333);
 }

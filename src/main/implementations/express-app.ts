@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import express, { Router } from 'express';
+import express, { Response, Router } from 'express';
 import cors from 'cors';
 import 'express-async-errors';
 import bodyParser from 'body-parser';
@@ -8,6 +8,7 @@ import App from 'src/main/app';
 import { RoutesResolver } from 'src/main/routes';
 import ExpressRouterAdapter from './express-router-adapter';
 import Database from '../database';
+import { IErrorHandler } from '../error-handler';
 
 class ExpressApp implements App {
   public readonly express: express.Application;
@@ -43,6 +44,14 @@ class ExpressApp implements App {
 
   async setDatabase(database: Database): Promise<void> {
     return database.connect();
+  }
+
+  setErrorHandler(handler: IErrorHandler): void {
+    this.express.use((err, _, expressResponse: Response, __) => {
+      const response = handler.handle(err);
+
+      expressResponse.status(response.statusCode).json(response.body);
+    });
   }
 }
 
