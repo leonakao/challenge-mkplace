@@ -15,8 +15,8 @@ class ExpressApp implements App {
     this.express = express();
   }
 
-  start(): void {
-    this.express.listen(3333, () => {
+  start(port: number): void {
+    this.express.listen(port, () => {
       // eslint-disable-next-line no-console
       console.log('Server started on port 3333!');
     });

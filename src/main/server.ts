@@ -1,8 +1,11 @@
+import { config as dotenvConfig } from 'dotenv';
 import App from './app';
 import routesResolver from './routes';
 
 export default function start(app: App) {
+  dotenvConfig();
+
   app.setRoutes(routesResolver);
 
-  app.start();
+  app.start(parseInt(process.env.port, 10) || 3333);
 }

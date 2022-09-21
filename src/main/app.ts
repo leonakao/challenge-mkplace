@@ -1,7 +1,7 @@
 import { RoutesResolver } from './routes';
 
 export default interface App {
-  start(): void;
+  start(port: number): void;
 
   setRoutes(routerResolver: RoutesResolver): void;
 }
