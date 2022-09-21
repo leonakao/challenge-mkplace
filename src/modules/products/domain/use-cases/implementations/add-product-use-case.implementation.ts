@@ -1,13 +1,14 @@
 import Product from 'src/modules/products/entity/product';
+import { inject, injectable } from 'tsyringe';
 import AddProductRepository from '../../repositories/add-product-repository';
 import AddProductUseCase, { AddProductData } from '../add-product-use-case';
 
+@injectable()
 export default class AddProductUseCaseImplementation implements AddProductUseCase {
-  public readonly repository: AddProductRepository;
-
-  constructor(repository: AddProductRepository) {
-    this.repository = repository;
-  }
+  constructor(
+    @inject('AddProductRepository')
+    private repository: AddProductRepository,
+  ) {}
 
   async execute(productData: AddProductData): Promise<Product> {
     const {
