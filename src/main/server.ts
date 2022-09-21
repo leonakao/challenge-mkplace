@@ -1,8 +1,9 @@
 import { config as dotenvConfig } from 'dotenv';
+import 'reflect-metadata';
+import 'src/infra/container';
 import MongoDatabaseAdapter from 'src/infra/database/mongo-database-adapter';
 import App from './app';
 import routesResolver from './routes';
-import 'src/infra/container';
 
 export default function start(app: App): void {
   dotenvConfig();
