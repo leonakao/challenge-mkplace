@@ -1,4 +1,4 @@
-import app from './infra/express/express-app';
+import app from './main/implementations/express-app';
 import startServer from './main/server';
 
 startServer(app);
