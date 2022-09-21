@@ -1,13 +1,13 @@
 import { Model } from 'mongoose';
 import { inject, injectable } from 'tsyringe';
-import AddProductRepository from '../../domain/repositories/add-product-repository';
+import ProductRepository from '../../domain/repositories/product-repository';
 import { AddProductData } from '../../domain/use-cases/add-product-use-case';
 import Product from '../../entity/product';
 import { productMapper } from '../mapper/product-mapper';
 import { ProductDocument } from '../models/product-model';
 
 @injectable()
-export default class ProductRepositoryImplementation implements AddProductRepository {
+export default class ProductRepositoryImplementation implements ProductRepository {
   constructor(
     @inject(Model<ProductDocument>)
     private productModel: Model<ProductDocument>,
