@@ -1,6 +1,6 @@
 import { Controller, Request, Response } from 'src/modules/shared/presentation';
 
-class CreateProductController implements Controller {
+class AddProductController implements Controller {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async handle(request: Request): Promise<Response> {
     return {
@@ -12,4 +12,4 @@ class CreateProductController implements Controller {
   }
 }
 
-export default new CreateProductController();
+export default new AddProductController();
