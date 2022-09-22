@@ -10,6 +10,7 @@ export interface AddProductDataRepository extends AddProductData {
 export default interface ProductRepository {
   addProduct(product: AddProductDataRepository): Promise<Product>;
   findByName(name: string): Promise<Product | null>;
+  findBySlug(slug: string): Promise<Product | null>;
   listProducts(perPage: number, page: number, filters: ProductsFilterOptions):
     Promise<PaginatedDataStruct<Product>>;
 }

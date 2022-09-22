@@ -31,6 +31,16 @@ export default class ProductRepositoryImplementation implements ProductRepositor
     return productMapper(productDocument);
   }
 
+  async findBySlug(slug: string): Promise<Product | null> {
+    const productDocument = await this.productModel.findOne({ slug });
+
+    if (!productDocument) {
+      return null;
+    }
+
+    return productMapper(productDocument);
+  }
+
   async listProducts(perPage: number, page: number, filters: ProductsFilterOptions):
     Promise<PaginatedDataStruct<Product>> {
     const options = {
