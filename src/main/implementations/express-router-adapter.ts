@@ -1,13 +1,15 @@
 import { Request as ExpressRequest, Response as ExpressResponse, Router as ExpressRouter } from 'express';
 import Controller from 'src/modules/shared/presentation/controller';
+import { injectable } from 'tsyringe';
 import ExpressRequestAdapter from './express-request-adapter';
 import Router from '../router'
 
+@injectable()
 export default class ExpressRouterAdapter implements Router {
   private readonly expressRouter: ExpressRouter
 
-  constructor(expressRouter: ExpressRouter) {
-    this.expressRouter = expressRouter
+  constructor() {
+    this.expressRouter = ExpressRouter();
   }
 
   get(path: string, controller: Controller): void {

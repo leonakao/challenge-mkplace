@@ -12,7 +12,7 @@ export default class ExpressRequestAdapter implements Request {
     return this._request.body;
   }
 
-  params(): Record<string, unknown> {
+  params(): Record<string, string|undefined> {
     return this._request.params;
   }
 

@@ -25,9 +25,7 @@ class ExpressApp implements App {
   }
 
   setRoutes(routesResolver: RoutesResolver): void {
-    const router = new ExpressRouterAdapter(Router());
-
-    routesResolver(router);
+    const router = routesResolver();
 
     this.express.use(
       bodyParser.urlencoded({
@@ -39,7 +37,7 @@ class ExpressApp implements App {
 
     this.express.use(cors());
 
-    this.express.use(router.getExpressRouter());
+    this.express.use((router as ExpressRouterAdapter).getExpressRouter());
   }
 
   async setDatabase(database: Database): Promise<void> {

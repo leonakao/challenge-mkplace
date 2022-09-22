@@ -33,3 +33,5 @@ container.register<UniqueProductRule>(
   'UniqueProductRule',
   { useClass: UniqueProductRule },
 )
+
+container.register<Router>('Router', { useClass: ExpressRouterAdapter });
