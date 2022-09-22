@@ -17,14 +17,14 @@ export default class ListProductsController implements Controller {
       page: query.page ? Number(query.page) : 1,
     }
 
-    const products = await this.listProductsUseCase.execute(
+    const paginatedProducts = await this.listProductsUseCase.execute(
       listOptions,
     );
 
     return {
       statusCode: 201,
       body: {
-        data: products,
+        ...paginatedProducts,
       },
     }
   }
