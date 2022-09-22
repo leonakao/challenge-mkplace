@@ -1,4 +1,4 @@
-import { Model } from 'mongoose';
+import { Model, PaginateModel } from 'mongoose';
 import { container } from 'tsyringe';
 
 import ProductRepository from 'src/modules/products/domain/repositories/product-repository';
@@ -15,7 +15,7 @@ container.register<ProductRepository>(
   { useClass: ProductRepositoryImplementation },
 )
 
-container.register(
+container.register<PaginateModel<ProductDocument>>(
   Model<ProductDocument>,
   { useValue: productModel },
 )

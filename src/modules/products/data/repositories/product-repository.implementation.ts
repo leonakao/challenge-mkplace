@@ -1,4 +1,4 @@
-import { Model } from 'mongoose';
+import { Model, PaginateModel } from 'mongoose';
 import PaginatedDataStruct from 'src/modules/shared/domain/data-strcucts/paginated-data-struct';
 import { inject, injectable } from 'tsyringe';
 import ProductRepository from '../../domain/repositories/product-repository';
@@ -11,7 +11,7 @@ import { ProductDocument } from '../models/product-model';
 export default class ProductRepositoryImplementation implements ProductRepository {
   constructor(
     @inject(Model<ProductDocument>)
-    private productModel: Model<ProductDocument>,
+    private productModel: PaginateModel<ProductDocument>,
   ) {}
 
   async addProduct(product: AddProductData): Promise<Product> {
