@@ -4,7 +4,7 @@ import Product from '../../entity/product';
 export type ProductsFilterOptions = {
   name?: string;
   brand?: string;
-  seller?: number;
+  seller?: string;
   priceRange?: {
     min: number;
     max: number;
