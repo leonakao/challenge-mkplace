@@ -17,6 +17,8 @@ export default class ListProductsController implements Controller {
       page: query.page ? Number(query.page) : 1,
       filters: {
         name: query.name ? String(query.name) : undefined,
+        brand: query.brand ? String(query.brand) : undefined,
+        seller: query.seller ? String(query.seller) : undefined,
       },
     }
 

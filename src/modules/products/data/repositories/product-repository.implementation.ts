@@ -42,6 +42,8 @@ export default class ProductRepositoryImplementation implements ProductRepositor
     const productsPaginated = await this.productModel
       .paginate(filterObject({
         name: filters.name ? { $regex: filters.name, $options: 'i' } : undefined,
+        brand: filters.brand ? { $regex: filters.brand, $options: 'i' } : undefined,
+        seller: filters.seller ? { $regex: filters.seller, $options: 'i' } : undefined,
       }), options);
 
     return {
