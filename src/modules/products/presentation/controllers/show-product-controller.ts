@@ -3,7 +3,7 @@ import { inject, injectable } from 'tsyringe';
 import ShowProductUseCase from '../../domain/use-cases/show-product-use-case';
 
 @injectable()
-export default class AddProductController implements Controller {
+export default class ShowProductController implements Controller {
   constructor(
     @inject('ShowProductUseCase')
     private readonly showProductUseCase: ShowProductUseCase,
