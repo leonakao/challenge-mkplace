@@ -19,7 +19,7 @@ export default class AddProductUseCaseImplementation implements AddProductUseCas
       name,
     } = productData;
 
-    if (this.uniqueProductRule.execute(name)) {
+    if (!await this.uniqueProductRule.execute(name)) {
       throw new RuleError('Product already exists');
     }
 
