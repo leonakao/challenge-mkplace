@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import express, { Response, Router } from 'express';
+import express, { Response } from 'express';
 import cors from 'cors';
 import 'express-async-errors';
 import bodyParser from 'body-parser';
