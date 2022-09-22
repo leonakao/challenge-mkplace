@@ -1,4 +1,4 @@
-import PaginatedDataStruct from 'src/modules/shared/data/data-strcucts/paginated-data-struct';
+import PaginatedDataStruct from 'src/modules/shared/domain/data-strcucts/paginated-data-struct';
 import Product from '../../entity/product';
 import { AddProductData } from '../use-cases/add-product-use-case';
 

@@ -1,5 +1,5 @@
 import { Model } from 'mongoose';
-import PaginatedDataStruct from 'src/modules/shared/data/data-strcucts/paginated-data-struct';
+import PaginatedDataStruct from 'src/modules/shared/domain/data-strcucts/paginated-data-struct';
 import { inject, injectable } from 'tsyringe';
 import ProductRepository from '../../domain/repositories/product-repository';
 import { AddProductData } from '../../domain/use-cases/add-product-use-case';
