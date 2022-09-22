@@ -86,7 +86,7 @@ seller=SellerName
 
 *Note*: Não foi implementado o filtro por ranges de preço.
 
-**GET** `/products/:slug` - Retorna toda a listagem de produtos
+**GET** `/products/:slug` - Retorna um produto específico baseado no slug
 
 ```
 // Example
@@ -103,7 +103,7 @@ http://localhost:3333/products/meu-produto
 }
 ```
 
-**POST** `/products` - Retorna toda a listagem de produtos
+**POST** `/products` - Cria um novo produto
 
 ```
 // Example
