@@ -1,4 +1,5 @@
 import { Model } from 'mongoose';
+import PaginatedDataStruct from 'src/modules/shared/data/data-strcucts/paginated-data-struct';
 import { inject, injectable } from 'tsyringe';
 import ProductRepository from '../../domain/repositories/product-repository';
 import { AddProductData } from '../../domain/use-cases/add-product-use-case';
@@ -29,12 +30,21 @@ export default class ProductRepositoryImplementation implements ProductRepositor
     return productMapper(productDocument);
   }
 
-  async listProducts(perPage: number, page: number): Promise<Product[]> {
-    const productDocuments = await this.productModel
-      .find()
-      .skip(perPage * (page - 1))
-      .limit(perPage);
+  async listProducts(perPage: number, page: number): Promise<PaginatedDataStruct<Product>> {
+    const options = {
+      page,
+      limit: perPage,
+    };
 
-    return productDocuments.map(productMapper);
+    const productsPaginated = await this.productModel
+      .paginate({}, options);
+
+    return {
+      data: productsPaginated.docs.map(productMapper),
+      total: productsPaginated.totalDocs,
+      perPage: productsPaginated.limit,
+      page: productsPaginated.page,
+      totalPages: productsPaginated.totalPages,
+    }
   }
 }
