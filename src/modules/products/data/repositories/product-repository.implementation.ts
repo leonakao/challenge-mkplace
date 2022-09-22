@@ -3,8 +3,7 @@ import { inject, injectable } from 'tsyringe';
 import filterObject from 'src/modules/shared/utils/filter-object';
 import PaginatedDataStruct from '../../../shared/domain/data-structs/paginated-data-struct';
 import { ProductsFilterOptions } from '../../domain/use-cases/list-products-use-case';
-import ProductRepository from '../../domain/repositories/product-repository';
-import { AddProductData } from '../../domain/use-cases/add-product-use-case';
+import ProductRepository, { AddProductDataRepository } from '../../domain/repositories/product-repository';
 import Product from '../../entity/product';
 import productMapper from '../mapper/product-mapper';
 import { ProductDocument } from '../models/product-model';
@@ -16,7 +15,7 @@ export default class ProductRepositoryImplementation implements ProductRepositor
     private productModel: PaginateModel<ProductDocument>,
   ) {}
 
-  async addProduct(product: AddProductData): Promise<Product> {
+  async addProduct(product: AddProductDataRepository): Promise<Product> {
     const productDocument = await this.productModel.create(product);
 
     return productMapper(productDocument);

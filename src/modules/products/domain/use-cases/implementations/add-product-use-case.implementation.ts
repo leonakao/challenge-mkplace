@@ -3,6 +3,7 @@ import { inject, injectable } from 'tsyringe';
 import RuleError from '../../errors/rule-error';
 import ProductRepository from '../../repositories/product-repository';
 import UniqueProductRule from '../../rules/unique-product';
+import slugify from '../../utils/slugify';
 import AddProductUseCase, { AddProductData } from '../add-product-use-case';
 
 @injectable()
@@ -23,6 +24,9 @@ export default class AddProductUseCaseImplementation implements AddProductUseCas
       throw new RuleError('Product already exists');
     }
 
-    return this.repository.addProduct(productData);
+    return this.repository.addProduct({
+      slug: slugify(name),
+      ...productData,
+    });
   }
 }
