@@ -6,6 +6,7 @@ import Product from '../../entity/product';
 
 export interface ProductDocument extends Document {
   name: Product['name'],
+  slug: Product['slug'],
   brand: Product['brand'],
   price: Product['price'],
   seller: Product['seller'],
@@ -14,6 +15,11 @@ export interface ProductDocument extends Document {
 const ProductSchema = new Schema(
   {
     name: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    slug: {
       type: String,
       required: true,
       unique: true,
