@@ -1,5 +1,6 @@
 import { Model, PaginateModel } from 'mongoose';
 import { inject, injectable } from 'tsyringe';
+import filterObject from 'src/modules/shared/utils/filter-object';
 import PaginatedDataStruct from '../../../shared/domain/data-structs/paginated-data-struct';
 import { ProductsFilterOptions } from '../../domain/use-cases/list-products-use-case';
 import ProductRepository from '../../domain/repositories/product-repository';
@@ -39,9 +40,9 @@ export default class ProductRepositoryImplementation implements ProductRepositor
     };
 
     const productsPaginated = await this.productModel
-      .paginate({
+      .paginate(filterObject({
         name: filters.name ? { $regex: filters.name, $options: 'i' } : undefined,
-      }, options);
+      }), options);
 
     return {
       data: productsPaginated.docs.map(productMapper),
