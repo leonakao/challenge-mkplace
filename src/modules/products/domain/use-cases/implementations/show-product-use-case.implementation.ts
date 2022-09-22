@@ -1,5 +1,6 @@
 import Product from 'src/modules/products/entity/product';
 import { inject, injectable } from 'tsyringe';
+import NotFoundError from '../../errors/not-found-error';
 import ProductRepository from '../../repositories/product-repository';
 import ShowProductUseCase from '../show-product-use-case';
 
@@ -14,7 +15,7 @@ export default class ShowProductUseCaseImplementation implements ShowProductUseC
     const product = await this.repository.findBySlug(productSlug);
 
     if (!product) {
-      throw new Error('Product not found');
+      throw new NotFoundError('Product not found');
     }
 
     return product;
